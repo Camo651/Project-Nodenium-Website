@@ -1,0 +1,164 @@
+<?php include 'Metadata.php'; ?>
+<title>Members</title>
+<link rel="stylesheet" href="Members.css" media="screen">
+  <body class="u-body">
+    <script src="../Profiles/ProfileLoader.js?q=1"></script>
+    <script type="text/javascript">
+      function useData(){
+        for(var i = 0; i < profileNames.length; i++){
+          profile = profiles.get(profileNames[i]);
+          console.log (profile);
+            if(profile.active == "Active" && profile.name.length > 0){
+              template = document.getElementById('t_member');
+              clone = template.content.cloneNode(true);
+              clone.querySelector('img').src = tryLoadImage("../Profiles/PFPs/"+profile.path+"_"+'pfp.png');
+              clone.querySelector('h3').innerHTML = profile.name;
+              clone.querySelectorAll('a')[0].href = "https://projectnodenium.com/Profiles/Profile?member="+profile.id;
+              clone.querySelectorAll('a')[1].href = "https://projectnodenium.com/Profiles/Profile?member="+profile.id;
+              template.parentNode.appendChild(clone);
+            }
+          }
+        }
+    </script>       
+    <?php include 'Navbar.php'; ?>
+    <section class="skrollable u-align-center u-clearfix u-image u-parallax u-section-1" src="" data-image-width="1600" data-image-height="900" id="sec-a452">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-body-alt-color u-text-default u-text-1">Members</h1>
+        <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-2"> Here's all our awesome members!</p>
+      </div>
+    </section>
+    <section class="u-clearfix u-grey-90 u-section-2" id="sec-cdc2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-text-1"></h1>
+        <div class="u-expanded-width u-layout-grid u-list u-list-1">
+          <h2>Click on a member to see their profile!</h2>
+          <div class="u-repeater u-repeater-1">
+            <template id="t_member">
+              <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                <div class="profile-aligner u-container-layout u-similar-container u-container-layout-1">
+                  <a id="imgLink">
+                    <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="60" data-image-height="60" data-target="_blank">
+                  </a>
+                    <h3 class="u-text u-text-2"></h3>
+                  <a id="btnLink"class="profile-btn">Click To See Profile</a>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="old-members">
+          <h2>Want to see older members?</h2>
+          <h5>Sadly not everyone can play forever</h5>
+          <a href="https://projectnodenium.com/OldMembers">Retired Members</a>
+        </div>
+      </div>
+    </section>
+    
+    
+    <?php include __dir__.'/Footer.php'; ?>
+
+    <style>
+      .profile-aligner{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .profile-btn{
+        /* border-radius: 50px; */
+        width: 110px;
+        height: 40px;
+        background-color: transparent;
+        /* border: 1px solid #fff; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+      }
+      .old-members{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 30px;
+        margin-top: 50px;
+      }
+      h2{
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+        margin: 8px;
+        text-align: center;
+      }
+      .old-members h5{
+        font-size: 20px;
+        font-weight: 400;
+        color: #fff;
+        margin: 8px;
+      }
+      .old-members a{
+        border-radius: 50px;
+        width: 210px;
+        height: 40px;
+        background-color: transparent;
+        border: 1px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        margin-top: 8px;
+      }
+      .profile-aligner a{
+          position: relative;
+          color: white;
+          font-size: large;
+          word-wrap: none;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+      }
+      .profile-aligner img{
+        filter: drop-shadow(-3px 3px 2px #080808);
+      }
+      #imgLink img{
+        border-radius: 0px;
+        opacity: 1;
+        transition: 0.15s;
+        border-color: #000;
+        scale: 1;
+      }
+      #imgLink:hover img{ 
+        border-radius: 20px;
+        opacity: 0.75;
+        border-color: #fff;
+        scale: 1.1;
+      }
+      #btnLink{
+        /* color: white; */
+        font-size: small;
+        word-wrap: none;
+        font-weight: 300;
+        font-family: 'Roboto', sans-serif;
+        margin: -10px;
+        padding: 5px;
+        scale: 1;
+        transition: 0.15s;
+        visibility: hidden;
+      }
+      #btnLink:hover{
+        /* color: #fff; */
+        text-decoration: none;
+        background-color: #000;
+        border-radius: 20px;
+        opacity: 0.75;
+      }
+      #imgLink:hover ~ #btnLink{
+        visibility: visible;
+        margin: 16px;
+      }
+
+    </style>
+  </body>
+</html>

@@ -1,0 +1,498 @@
+<?php 
+  session_start();
+  $_SESSION['sessionStartTime'] = date("Y-m-d") . " " . date("h:i:sa");
+  include 'Metadata.php';
+?>
+<title>Project Nodenium</title>
+<link rel="stylesheet" href="Home.css" media="screen">
+    <body class="u-body u-overlap u-overlap-contrast u-overlap-transparent" >
+      <?php 
+        include 'Navbar.php'; 
+      ?>
+    <section class="u-clearfix u-section-1" id="sec-c97f"style="min-height: 0px; background-color: #1a1a1a;">
+      <div style="height:100vh;" class="u-carousel u-carousel-duration-1500 u-expanded-width u-gallery u-gallery-slider u-layout-carousel u-no-transition u-show-text-none u-gallery-1" data-interval="4000" data-u-ride="carousel" id="carousel-f497" data-pause="false">
+        <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+          <li data-u-target="#carousel-f497" data-u-slide-to="0" class="u-active u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-f497" data-u-slide-to="1" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-f497" data-u-slide-to="2" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-f497" data-u-slide-to="3" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-f497" data-u-slide-to="4" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+        </ol>
+        <div class="u-carousel-inner u-gallery-inner" role="listbox">
+          <div class="u-active u-carousel-item u-gallery-item u-carousel-item-1">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1600" data-image-height="843">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/Server_8.png">
+              <p id="imageCaption">Built by the Community</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-1">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-2">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1600" data-image-height="843">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/critical_9.png">
+              <p id="imageCaption">Built by Critical Cat</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-1">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-3">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1274" data-image-height="740">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/blitz_1.png">
+              <p id="imageCaption">Built by Blitz</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-2">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-4">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1214" data-image-height="767">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/camo_6.png">
+              <p id="imageCaption">Built by Camo</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-3">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-5">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1541" data-image-height="837">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/tjhawk_4.png">
+              <p id="imageCaption">Built by TJ Hawk</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-4">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-6">
+            <div class="textShadow imageHolder u-back-slide" data-image-width="1600" data-image-height="814">
+              <img class="blurEffect u-back-image u-expanded" src="https://projectnodenium.com/Profiles/Content/fourthivan_3.png">
+              <p id="imageCaption">Built by Fourthivan</p>
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-5">
+              <h3 class="u-gallery-heading"></h3>
+              <p class="u-gallery-text"></p>
+            </div>
+          </div>
+        </div>
+        <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-opacity u-opacity-70 u-text-body-alt-color u-carousel-control-1" href="#carousel-f497" role="button" data-u-slide="prev">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+        </a>
+        <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-opacity u-opacity-70 u-text-body-alt-color u-carousel-control-2" href="#carousel-f497" role="button" data-u-slide="next">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+        </a>
+      </div>
+      <div class="u-align-center u-container-style u-group u-shape-rectangle u-group-1 slideInTop" style="margin-top: -530px; min-height: 0px;">
+        <div class="u-container-layout u-container-layout-1" width="100%">
+          <h1 class="u-text u-text-body-alt-color u-text-1" style="font-size: 350%vw;">Project Nodenium</h1>
+          <h5 class="u-text u-text-black u-text-default u-text-2">
+            <span class="u-text-body-alt-color" style="font-size: 150%vw;">Season 11<br>Vanilla Survival Building Community</span>
+            <br>
+          </h5>
+          <div class="u-list u-list-1">
+            <div class="u-repeater u-repeater-1">
+              <div class="u-container-style u-list-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+                  <a href="http://play.projectnodenium.com:8123" class="animBtn u-border-2 u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-hover-black u-none u-radius-20 u-text-hover-white u-text-white u-btn-1" target="_blank">Main Map</a>
+                </div>
+              </div>
+              <div class="u-container-style u-list-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
+                  <a href="http://play.projectnodenium.com:8124" class="animBtn u-border-2 u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-hover-black u-none u-radius-20 u-text-hover-white u-text-white u-btn-2" target="_blank">Testing Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/#sec-135e" data-page-id="96317347" class="arrows u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-hover-feature u-none u-text-palette-4-base u-btn-3" data-animation-name="slideIn" data-animation-duration="1000" data-animation-direction="Down"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="images/8.png" alt=""></span>
+          </a>
+        </div>
+      </div>
+      
+    </section>
+    <section class="u-align-right u-clearfix u-palette-1-base u-section-2" id="sec-135e" style="background-color: #1a1a1a;">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1" style="margin-top:0px;">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-1">
+                  <img class="u-image u-image-default u-image-1" src="https://projectnodenium.com/Profiles/Content/vyruz_3.png" alt="" data-image-width="1600" data-image-height="900" data-animation-name="customAnimation" data-animation-duration="500" data-animation-direction="" data-animation-delay="250">
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h3 class="textShadow u-align-left u-text u-text-1" style="white-space:nowrap;">
+                    <span style="font-weight: 700;">Welcome to our Server!</span>
+                  </h3>
+                  <p class="textShadow u-text u-text-2">Nodenium is a group of skilled and dedicated builders who strive to make amazing creations in survival Minecraft!<br>We are always looking for new members! Hit 'Apply' to join today!</p>
+                  <a href="Apply" class="darkGray animBtn u-active-black u-align-left u-border-2 u-border-active-black u-border-hover-black u-border-palette-2-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-round  u-hover-white u-radius-50 u-text-active-palette-1-base u-text-hover-black u-text-palette-2-base u-top-left-radius-0 u-top-right-radius-0 u-btn-1" target="_blank">Apply!</a>
+                  <p class="textShadow u-text u-text-2">Unsure?<br>Check out the <a href="Gallery" style="color:rgb(144, 215, 238);">Gallery</a> to see some of our builds or read about our <a href="History" style="color:rgb(144, 215, 238);">Server History</a> to see our 7+ years of dedication to this game!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-border-3 u-border-white u-line u-line-horizontal u-line-1" style="margin-top: 58px;"></div>
+        <h3 class="u-align-center u-text u-text-default u-text-3">Season 11.1 Ends In:<br>
+        </h3>
+        <div id="clockFrame">
+          <div class="clockDigit">
+            <h1 class="clockNumeric" id="daysCounter">00</h1>
+            <p id="clockSubtitle">Days</p>
+          </div>
+          <div class="clockDigit">
+            <h1 class="clockNumeric" id="hoursCounter">00</h1>
+            <p id="clockSubtitle">Hours</p>
+          </div>
+          <div class="clockDigit">
+            <h1 class="clockNumeric" id="minutesCounter">00</h1>
+            <p id="clockSubtitle">Minutes</p>
+          </div>
+          <div class="clockDigit">
+            <h1 class="clockNumeric" id="secondsCounter">00</h1>
+            <p id="clockSubtitle">Seconds</p>
+          </div>
+        </div>
+        <script>
+          var seasonStartDate = new Date("2023-06-28T18:00:00Z");
+          function updateClock(){
+            var currentDate = new Date();
+            var diff = seasonStartDate - currentDate;
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * (1000 * 60 * 60 * 24);
+            var hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+            var minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * (1000 * 60);
+            var seconds = Math.floor(diff / 1000);
+
+            dayElement = document.getElementById("daysCounter");
+            hourElement = document.getElementById("hoursCounter");
+            minuteElement = document.getElementById("minutesCounter");
+            secondElement = document.getElementById("secondsCounter");
+
+            if(Math.abs(days).toString() != dayElement.innerText)
+              animate(dayElement, Math.abs(days));
+            if(Math.abs(hours).toString() != hourElement.innerText)
+              animate(hourElement, Math.abs(hours));
+            if(Math.abs(minutes).toString() != minuteElement.innerText)
+              animate(minuteElement, Math.abs(minutes));
+            if(Math.abs(seconds).toString() != secondElement.innerText)
+              animate(secondElement, Math.abs(seconds));
+
+            setTimeout(updateClock, 1000);
+          }
+
+          updateClock();
+
+          function animate(item, num){
+            let animation = item.animate([
+                // keyframes
+                { transform: 'translateY(0px)', opacity: '1' },
+                { transform: 'translateY(1px)', opacity: '0.9' },
+                { transform: 'translateY(4px)',  opacity: '0.7' },
+                { transform: 'translateY(9px)', opacity: '0.5'},   
+                { transform: 'translateY(14px)', opacity: '0.5' }
+                
+              ], { 
+                // timing options
+                duration: 500,
+                          
+              });
+              let newText = num.toString();
+              animation.onfinish = function() {
+                // change text 
+                item.innerText = newText;
+                // and start the second animation   
+                item.animate([
+                // keyframes
+                { transform: 'translateY(14px)', opacity: '0.5' },
+                { transform: 'translateY(9px)', opacity: '0.5' },
+                { transform: 'translateY(4px)',  opacity: '0.7' },
+                { transform: 'translateY(1px)', opacity: '0.9'},   
+                { transform: 'translateY(0px)', opacity: '1' }
+                
+              ], { 
+                // timing options
+                duration: 500,
+                
+              });
+              };
+          }
+        </script>
+        <style>
+          #clockFrame{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 24px;
+          }
+          .clockNumeric{
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0;
+          }
+          #clockSubtitle{
+
+          }
+          .clockDigit{
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+          }
+        </style>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-grey-90 u-section-3" id="carousel_e704">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-text u-text-default u-text-1" style="margin-top: 0px;">Frequently Asked Questions</h3>
+        <div class="u-accordion u-collapsed-by-default u-expanded-width u-faq u-spacing-20 u-accordion-1">
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-1" id="link-accordion-6327" aria-controls="accordion-6327" aria-selected="false">
+              <span class="u-accordion-link-text"> What version is Nodenium on?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-2c6d"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-2c6d" ><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-1" id="accordion-6327" aria-labelledby="link-accordion-6327">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p id="isPasted">We use the latest version of Java edition Fabric 1.19</p>
+                  <p>
+                    <br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-3" id="link-accordion-eb1f" aria-controls="accordion-eb1f" aria-selected="false">
+              <span class="u-accordion-link-text"> How do I join?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4086"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-4086" ><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-3" id="accordion-eb1f" aria-labelledby="link-accordion-eb1f">
+              <div class="u-container-layout u-container-layout-3">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>Click the 'Apply' button above to join the applications discord. Use the instructions in the #info channel.<br>You can message VyruZ#7158, Camo#0477, or Nate!#5922 if you have any questions. We're always happy to help!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item u-expanded-width">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-4" id="link-accordion-eb1f" aria-controls="accordion-eb1f" aria-selected="false">
+              <span class="u-accordion-link-text"> How long does a season last?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-df61"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-df61" ><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-4" id="accordion-eb1f" aria-labelledby="link-accordion-eb1f">
+              <div class="u-container-layout u-container-layout-4">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>There is no set duration for a season! We will keep going with a season as long as we are all still having fun. The last season was almost 10 months!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-5" id="link-c598" aria-controls="c598" aria-selected="false">
+              <span class="u-accordion-link-text"> Where can I find a world download?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-5"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9f44"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-9f44"><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-5" id="c598" aria-labelledby="link-c598">
+              <div class="u-container-layout u-container-layout-5">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>World files are available on the 'World Archives' tab in the <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="Server-Resources" data-page-id="105001204">
+                      <span class="u-text-palette-4-base">Server Resources</span>
+                    </a> page
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-7" id="link-de7a" aria-controls="de7a" aria-selected="false">
+              <span class="u-accordion-link-text"> What are the rules?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-7"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-d30c"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-d30c"><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-7" id="de7a" aria-labelledby="link-de7a">
+              <div class="u-container-layout u-container-layout-7">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p id="isPasted">
+                    - No getting items through exploits or unfair advantages (TNT duping is okay)
+                    <br>
+                    - No harming other players' progress (Stealing, Griefing, etc.)
+                    <br>
+                    - Be an active and responsible member of the community
+                    <br>
+                    These rules are common sense and up for interpretation, if you are uncertain about anything feel free to ask around!</p>
+                  <p>
+                    <br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-8" id="link-e75c" aria-controls="e75c" aria-selected="false">
+              <span class="u-accordion-link-text">How do I know if Nodenium is a good fit?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-8"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-52f9"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-52f9"><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-8" id="e75c" aria-labelledby="link-e75c">
+              <div class="u-container-layout u-container-layout-8">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>Nodenium is a community of talented, long-term, and dedicated, building-oriented players. If you're looking for a server that will truly last and allow you to fully express your building potential; then Nodenium is what you're looking for!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-black u-border-6 u-border-active-grey-75 u-border-hover-grey-75 u-border-no-bottom u-border-no-left u-border-no-right u-button-style u-palette-2-base u-text-active-white u-text-body-color u-text-hover-black u-accordion-link-7" id="link-de7a" aria-controls="de7a" aria-selected="false">
+              <span class="u-accordion-link-text"> What are the requirements to join?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-palette-1-base u-icon-7"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-d30c"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-d30c"><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-border-1 u-border-grey-75 u-container-style u-palette-1-base u-accordion-pane-7" id="de7a" aria-labelledby="link-de7a">
+              <div class="u-container-layout u-container-layout-7">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p id="isPasted">You must:<br>-Have a non-cracked version of the latest version of Minecraft Java<br>-Have a discord account<br>-Be a skilled builder<br>-Have a passion for creating something bigger than yourself<br>-And be a good person!<br><br>If you are unsure about anything feel free to join the discord and ask a team member! We're always happy to help!</p>
+                  <p>
+                    <br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @keyframes slideTop {
+        0% {
+            transform: translateY(-200%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+      }
+
+      @keyframes tinySlideDown{
+        0% {
+            transform: translateY(0%);
+        }
+        100% {
+            transform: translateY(20%);
+        }
+      }
+      @keyframes largeSlideDown{
+        0% {
+            transform: translateY(0%);
+        }
+        100% {
+            transform: translateY(1000%);
+        }
+      }
+
+      @keyframes blurFade{
+        0% {
+            filter: blur(40px);
+        }
+        100% {
+            filter: blur(0px);
+        }
+      }
+
+      .blurEffect{
+        animation: blurFade 1s ease-in-out;
+      }
+      .slideInTop {
+        animation-name: slideTop;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+      .animBtn{
+        background-color: #2b2a31;
+        color: white;
+        border: 2px solid white;
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        scale: 1;
+        transition: 0.2s;
+      }
+      .animBtn:hover{
+        scale: 1.1;
+        transition: 0.2s;
+      }
+      .animBtn:active{
+        scale: 0.9;
+        transition: 0.2s;
+      }
+      .arrows{
+        scale: 1.0;
+        transition: 0.2s;
+      }
+      .arrows:hover{
+        scale: 1.1;
+        transition: 0.2s;
+      }
+      .arrows:active{
+        scale: 0.9;
+        transition: 0.2s;
+      }
+
+      #imageCaption{
+        position: relative;
+        color: white;
+        margin: 10px;
+        font-size: 15px;
+        font-weight: light;
+        text-align: center;
+      }
+      .imageHolder{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-start;
+      }
+      .textShadow{
+        text-shadow: 1px 1px 5px black, 2px 2px 10px black !important;
+      }
+      .lightGray{
+        background-color: #2b2a31ff;
+      }
+      .darkGray{
+        background-color: #1a1a1aff !important;
+      }
+
+    </style>
+    
+    
+    <?php include __dir__.'/Footer.php'; ?>
+  </body>
+</html>

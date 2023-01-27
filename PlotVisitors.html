@@ -1,0 +1,62 @@
+<?php include "AdminLock.php"; ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Plot Visitors</title>
+    </head>
+    <body>
+        <h1>Plot Visitors</h1>
+        <canvas id="map"></canvas>
+        <script>
+            var json;
+            loadMap();
+            async function loadMap(){
+                var canvas = document.getElementById("map");
+                canvas.width = 991;
+                canvas.height = 496;
+                var ctx = canvas.getContext("2d");
+                var mapImg = new Image();
+                mapImg.src = "images/WorldMap.png";
+                mapImg.onload = async function(){
+                    ctx.drawImage(mapImg, 0, 0, mapImg.width, mapImg.height);
+                    ips = await getVisitorStats();
+                    for (var i = 0; i < ips.length; i++){
+                        var coords;
+                        if (json["ips"][ips[i]]["location"] != null && json["ips"][ips[i]]["location"][0] != null && json["ips"][ips[i]]["location"][1] != null){
+                            coords = json["ips"][ips[i]]["location"];
+                        }else{
+                            coords = await getIpsCoords(ips[i]);
+                        }
+                        var lat = coords[0];
+                        var lon = coords[1];
+                        var x = (lon + 180) * (canvas.width / 360) * 1;
+                        var y = (-lat + 90) * (canvas.height / 180) * 1;
+                        ctx.fillStyle = "#FF000050";
+                        ctx.beginPath();
+                        ctx.arc(x, y, 3, 0, 2*Math.PI);
+                        ctx.fill();
+                        console.log(ips[i] + " " + lat + " " + lon + " "  + (i+1) + "/" + ips.length + "%");
+                    }
+                    console.log("done");
+                }
+
+
+            }
+            async function getVisitorStats(){
+                var stats = await fetch("../Visitors.json");
+                stats = await stats.json();
+                json = stats;
+                return Object.keys(stats["ips"]);
+            }
+            async function getIpsCoords(ip){
+                var location = await fetch("https://json.geoiplookup.io/"+ip);
+                location = await location.json();
+                var loc = [location["latitude"], location["longitude"]];
+                json["ips"][ip]["location"] = loc;
+                return loc;
+            }
+        </script>
+        <a id="downloadAnchorElem" style="display:none"></a>
+    </body>
+</html>

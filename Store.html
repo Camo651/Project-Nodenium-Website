@@ -1,0 +1,186 @@
+<?php include 'Metadata.php'; ?>
+<title>Store</title>
+<link rel="stylesheet" href="Gallery.css" media="screen">
+  <body class="u-body">
+    <script type="text/javascript">
+
+      function imageExists(image_url){
+
+      var http = new XMLHttpRequest();
+
+      http.open('HEAD', image_url, false);
+      http.send();
+
+      return http.status != 404;
+
+      }
+
+      function tryLoadImage(path){
+      if(imageExists(path)){
+        return path;
+      } else {
+        return "https://projectnodenium.com/images/m.png";
+      }
+      }
+
+      loadData()
+      .then(response => {
+      console.log('data loaded');
+      })
+      .catch(error => {
+      console.log(error);
+      });
+
+      function shuffle(array) {
+      let currentIndex = array.length,  randomIndex;
+      while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
+      }
+
+
+      let profileNames = [];
+      let profiles = new Map();
+
+      async function loadData(){
+        v = Math.random();
+        console.log("fetching v: "+v);
+        const respose = await fetch('https://projectnodenium.com/merch/MerchCatalog.txt?v='+v);
+        const data = await respose.text();
+        let lines = data.split('\n');
+        let items = [];
+        for(var i=0; i<lines.length;i++){
+          d = lines[i].split(',');
+          items.push({
+            name : d[0],
+            price : d[1],
+            image : d[2],
+            link : d[3]
+          });
+        }
+        items = shuffle(items);
+        for(var i = 0; i < items.length; i++){
+          template = document.getElementById('t_gal');
+          clone = template.content.cloneNode(true);
+          clone.querySelectorAll('img')[0].src = ("https://www.projectnodenium.com/merch/"+items[i].image+"_b.jpg");
+          clone.querySelectorAll('img')[1].src = ("https://www.projectnodenium.com/merch/"+items[i].image+"_f.jpg");
+          clone.querySelector('h3').innerHTML = items[i].name+"<br>$"+items[i].price;
+          clone.querySelector('a').href = items[i].link;
+          console.log(items[i].link);
+          template.parentNode.appendChild(clone);
+        }
+        console.log(items);
+      }
+    </script>   
+          <?php include 'Navbar.php'; ?>
+    <section class="u-align-center u-clearfix u-image u-parallax u-section-1" style="background-image: url(https://projectnodenium.com/Profiles/Content/vyruz_2.png);" data-image-width="1600" data-image-height="839" id="sec-3dd0">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-body-alt-color u-text-default u-text-1">Store</h1>
+        <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-2">Support the server with some awesome merch!</p>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-grey-90 u-section-2" id="sec-c62b">
+      <div> <!--image container-->
+        <h2 class="headerthing">Click on a product to see more options</h2>
+        <div id="ld_gallery" class="grid-container">
+          <template id="t_gal">
+            <div class="grid-item">
+              <a target="_blank" class="linkthing">
+                <h3 class="img-txt"></h3>
+                <div class="img-cont">
+                  <img class="profile-image front" class="image">
+                  <img class="profile-image back" class="image">
+                </div>
+              </a>
+            </div>
+          </template>
+        </div> 
+      </div>
+    </section>
+        
+    <?php include __dir__.'/Footer.php'; ?>
+
+      <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          padding: 10px;
+          background-color: #2b2a31;
+          position: relative;
+          margin-left: 10vw;
+          margin-right: 10vw;
+          margin-top: 2vh;
+          margin-bottom: 2vh;
+          justify-content: center;
+        }
+        .grid-item {
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          z-index: 2;
+        }
+        .linkthing{
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-content: center;
+          align-items: center;
+          justify-content: flex-end;
+        }
+        .profile-image {
+          width: 80vw;
+          height: 100%;
+          display: block;
+          filter: drop-shadow(-5px 4px 2px #080808);
+          object-fit: cover;
+          max-width: 100%;
+          overflow: hidden;
+          opacity: 1;
+        }
+        .img-txt{
+          position: absolute;
+          color: #fff;
+          transition: opacity .2s, visibility .2s;
+          font-size: 1.5em;
+          font-weight: 600;
+          text-shadow: 5px 5px 9px rgba(0,0,0,1);
+          z-index: 4;
+          background-color: #2b2a317a;
+          padding: 3px !important;
+          background-clip: border-box;
+          border-radius: 5px;
+        }
+        .img-cont{
+          position: relative;
+          display: inline-block;
+        }
+        .img-cont .front {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            border-radius: 60px;
+        }
+        .img-cont .back {
+            border-radius: 20px;
+            scale: 1;
+            transition: .2s;
+        }
+        .img-cont:hover .back {
+            border-radius: 60px;
+            scale: 1.05;
+            transition: .2s;
+            /* visibility: hidden; */
+        }
+        .img-cont:hover .front {
+            /* display: inline; */
+        }
+      </style>
+  </body>
+</html>

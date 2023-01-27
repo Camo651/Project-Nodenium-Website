@@ -1,0 +1,30 @@
+# Remove the .php tag
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L] 
+
+# Remove the .html tag
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Route error codes to the error page
+ErrorDocument 404 /NotFound.html
+ErrorDocument 403 /NotFound.html
+
+# Check that this machine is not the host server, then block access to txt and json files
+RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+RewriteRule \.(txt|json?)$ - [F]
+
+# Allow php to run on html files
+AddType application/x-httpd-php .htm .html
+
+# Enforce SSL
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www.)?projectnodenium.com$
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L]
+</IfModule>

@@ -1,0 +1,609 @@
+<?php include '../Metadata.php'; ?>
+<title>Profile</title>
+<link rel="stylesheet" href="../Members.css" media="screen">
+  <body class="u-body">
+    <script src="../Profiles/ProfileLoader.js?q=4"></script>
+    <script type="text/javascript">
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const memName = urlParams.get('member');
+        if(memName == null){
+          console.error("No member name provided");
+          window.location.href = "https://projectnodenium.com/Members";
+        }
+        //#region Badge Colours 
+        let badgeColours = new Map();
+        badgeColours.set('Founder', '#c07cc01');
+        badgeColours.set('Owner', '#a120ff');
+        badgeColours.set('Mod', '#f1c40f');
+        badgeColours.set('Mayor', '#e74c3c');
+        badgeColours.set('Ex Mayor', '#471111');
+        badgeColours.set('Patreon', '#c9f1d0');
+        badgeColours.set('01', '#4b6a79');
+        badgeColours.set('02', '#4b6a79');
+        badgeColours.set('03', '#4b6a79');
+        badgeColours.set('04', '#4b6a79');
+        badgeColours.set('05', '#4b6a79');
+        badgeColours.set('06', '#4b6a79');
+        badgeColours.set('07', '#4b6a79');
+        badgeColours.set('08', '#4b6a79');
+        badgeColours.set('09', '#4b6a79');
+        badgeColours.set('10', '#4b6a79');
+        badgeColours.set('11', '#4b6a79');
+        //#endregion
+
+      function useData(){
+        let profile = profiles.get(memName);
+        console.log(memName);
+        console.log(profile);
+
+        if(profile == null){
+          console.error("No profile found for member: " + memName);
+          window.location.href = "https://projectnodenium.com/Members";
+        }
+        document.title = profile.name;
+
+        filepath = '../Profiles/Content/'+profile.path+'/';
+        document.getElementById('ld_name').innerHTML = profile.name;
+        document.getElementById('ld_bio').innerHTML = profile.bio;
+        document.getElementById('ld_pfp').src = tryLoadImage("../Profiles/PFPs/"+profile.path+"_"+'pfp.png');
+        document.getElementById('ld_featured').src = tryLoadImage("../Profiles/Content/"+profile.path+"_"+profile.featured+'.png');
+        for(var i=0; i<profile.badges.length; i++){
+          template = null;
+          if(isNaN(profile.badges[i]))
+            template = document.getElementById('t_badge1');
+          else
+            template = document.getElementById('t_badge2');
+          clone = template.content.cloneNode(true);
+          clone.querySelector('h2').innerHTML = profile.badges[i];
+          clone.querySelector('h2').style = 'font-size: ' + (17 - (1.2 * profile.badges[i].length)) + 'px';
+          clone.querySelector('div').style = 'border-color: '+badgeColours.get(profile.badges[i])+';';
+          template.parentNode.appendChild(clone);
+        }
+        for(var i=0; i<profile.socials.length; i++){
+          if(profile.socials[i][1] == '')
+            continue;
+          template = document.getElementById('t_socials');
+          clone = template.content.cloneNode(true);
+          clone.querySelector('img').src = tryLoadImage('../Icons/Icon_'+profile.socials[i][0]+'.png');
+          clone.querySelector('a').href = profile.socials[i][1];
+          template.parentNode.appendChild(clone);
+        }
+        let gal = [];
+        for(var f = 0; f < profile.gallery.length; f++){
+            if(profile.gallery[f].display){
+              gal.push({
+                path: "../Profiles/Content/"+profile.path+"_"+profile.gallery[f].id+".png",
+                name: profile.name,
+                caption: profile.gallery[f].caption,
+                subtitle : profile.gallery[f].season==""?"":("Season "+profile.gallery[f].season)
+              });
+          }
+          if(profile.featured == profile.gallery[f].id){
+            if(profile.gallery[f].caption == ""){
+              document.getElementById('ld_caption').parentElement.remove();
+            }else{
+              document.getElementById('ld_caption').innerHTML = profile.gallery[f].caption;
+            }
+          }
+        }
+        gal = shuffle(gal);
+        for(var i = 0; i < gal.length; i++){
+          template = document.getElementById('t_gallery');
+          clone = template.content.cloneNode(true);
+          clone.querySelector('img').src = tryLoadImage(gal[i].path);
+          clone.querySelector('h3').innerHTML = gal[i].caption;
+          let size = 45-gal[i].caption.length;
+          clone.querySelector('h3').style = 'font-size: ' + (size<15?15:size>35?35:size) + 'px';
+          console.log(gal[i].caption.length);
+          clone.querySelector('h6').innerHTML = gal[i].subtitle;
+          let id = ""+i;
+          clone.querySelector('#imgFeature').addEventListener('click', function(){
+            featureImage(id);
+          });
+          template.parentNode.appendChild(clone);
+        }    
+        loadedGallery = gal;    
+      }
+      let loadedGallery = [];
+      let featured = -1;
+      function featureImage(id){
+        if(featured == -1){
+          document.getElementById('lightbox').style.display = "flex";
+        }
+        featured = id;
+        document.getElementById('focusedImage').src = tryLoadImage(loadedGallery[id].path);
+        document.getElementById('focusedTitle').innerHTML = loadedGallery[id].caption;
+        document.getElementById('focusedCaption').innerHTML = loadedGallery[id].subtitle;
+      }
+      function clickArrow(x){
+        if(featured == -1)
+          return;
+        let nId = parseInt(featured) + x;
+        if(nId < 0)
+          nId = loadedGallery.length-1;
+        else if(nId >= loadedGallery.length)
+          nId = 0;
+        featureImage(nId);
+      }
+      function closeLightbox(){
+        if(featured != -1)
+          document.getElementById('focusedImage').src = "";
+        featured = -1;
+        document.getElementById('lightbox').style.display = "none";
+      }
+    </script>    
+          <?php include '../Navbar.php'; ?>
+    <section class="u-clearfix u-grey-90 u-section-2" id="sec-cdc2">
+      <div class="u-clearfix u-sheet u-sheet-1  outerthing">
+        <div class="profile-top-box"> <!--top row-->
+          <div class="profile-top-box-inner-text"> <!--info box-->
+            <div id="swatchDiv">
+              <div class="text-box-swatch heavy-drop-shadow">
+                <img id="ld_pfp">
+              </div>
+              <div id="badgeDiv">
+                <div id="ld_badges" class="text-box-badges">
+                  <template id="t_badge1">
+                    <div class="badge" style="border-color: #123456;">
+                      <h2></h2>
+                    </div>
+                  </template>
+                </div>
+                <div id="ld_badges" class="text-box-badges">
+                  <template id="t_badge2">
+                    <div class="badge" style="border-color: #123456;">
+                      <h2></h2>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <div class="text-box-name">
+              <h1 id="ld_name"></h1>
+              <div class="thin-white-linebreak"></div>
+            </div>
+            <div class="text-box-aboutme light-drop-shadow">
+              <p id="ld_bio"></p>
+            </div>
+            <div id="ld_social" class="text-box-socials">
+              <template id="t_socials">
+                <a target="_blank"><img class="social-icon"></a>
+              </template>
+            </div>
+          </div>
+          <div class="profile-top-box-inner"> <!--picture box-->
+            <img id="ld_featured" class="featured-image heavy-drop-shadow">
+            <div class="featured-image-caption">
+              <h3 id="ld_caption"></h3>
+            </div>
+          </div>
+        </div>
+        <div> <!--bottom row-->
+          <div> <!--image container-->
+            <div id="ld_gallery" class="grid-container">
+              <template id="t_gallery">
+                <div class="grid-item">
+                  <div class="linkthing" id="imgFeature">
+                    <div class="img-txt">
+                      <h3 class="img-title textShadow"></h3>
+                      <h6 class="img-desc textShadow"></h6>
+                    </div>
+                    <img class="profile-image image" loading="lazy">
+                  </div>
+                </div>
+              </template>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="lightbox" >
+        <div id="arrowHolder"style="left:-25px">
+          <a class="noselect" id="arrowLink" onclick="clickArrow(-1)">&lt</a>
+        </div>
+        <div id="focusedContent">
+          <img id="focusedImage" src="">
+          <h1 id="focusedTitle">Image title here</h1>
+          <p id="focusedCaption">image caption here</p>
+        </div>
+        <div id="arrowHolder" style="right:-25px">
+          <a class="noselect" id="closeLightbox" onclick="closeLightbox()">X</a>
+          <a class="noselect" id="arrowLink" onclick="clickArrow(1)">&gt</a>
+        </div>
+      </div>
+    </section>
+    
+    <?php include '../Footer.php'; ?>
+
+      <style>
+
+        #swatchDiv{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: nowrap;
+
+          width: 100%;
+          height: 25%;
+        }
+
+        .noselect {
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+              -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
+                                          supported by Chrome, Edge, Opera and Firefox */
+        }
+        #lightbox{
+          position: fixed;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,0.8);
+          display: none;
+          z-index: 100;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: row;
+          flex-wrap: nowrap;
+        }
+        #focusedContent{
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 90%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        #focusedImage{
+          width: 85vw;
+          object-fit: contain;
+          max-height: 80vh;
+          margin-top: 40px;
+        }
+        #focusedTitle{
+          color: white;
+          font-size: 2rem;
+          bottom: 8px;
+          position: relative;
+        }
+        #focusedCaption{
+          color: white;
+          font-size: 2rem;
+          bottom: 28px;
+          position: relative;
+        }
+        #arrowHolder{
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 10%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          flex-direction: column;
+        }
+        #arrowLink{
+          color: white;
+          font-size: 3rem;
+          text-decoration: none;
+          scale: 1;
+          transition: .2s;
+          border-radius: 20px;
+          border-color: white;
+          border-width: .5px;
+          border: solid;
+        }
+        #arrowLink:hover{
+          color:lightgray;
+          scale: 1.1;
+          transition: .2s;
+        }
+        #closeLightbox{
+          top: 30px;
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          font-size: x-large;
+          color: white;
+          scale: 1;
+          transition: .2s;
+        }
+        #closeLightbox:hover{
+          color: lightgray;
+          transition: .2s;
+          scale: 1.1;
+        }
+
+        .outerthing{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+        .grid-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          padding: 10px;
+          background-color: #2b2a31;
+          position: relative;
+          margin-left: 5vw;
+          margin-right: 5vw;
+          margin-top: 2vh;
+          margin-bottom: 2vh;
+          justify-content: center;
+        }
+        .grid-item {
+          padding: 5px;
+          display: flex;
+          justify-content: center;
+        }
+        .linkthing{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-content: flex-end;
+          align-items: flex-end;
+          justify-content: flex-start;
+        }
+        .profile-image {
+          width: 80vw;
+          height: 100%;
+          display: block;
+          filter: drop-shadow(-5px 4px 2px #080808);
+          object-fit: cover;
+          max-width: 100%;
+          overflow: hidden;
+          opacity: 1;
+          transition: .3s;
+          scale: 1;
+          z-index: 1;
+        }
+        .profile-image:hover {
+          filter: drop-shadow(-7px 10px 2px #080808);
+          transition: .3s;
+          scale: 1.1;
+          z-index: 2;
+        }
+        .img-txt{
+          position: absolute;
+          color: #fff !important;; 
+          opacity: 0 !important;
+          transition: opacity .2s, visibility .2s !important;
+          font-size: .5em !important;
+          font-weight: 600  !important; 
+          pointer-events: none !important;
+        }
+        .textShadow{
+          text-shadow: 5px 5px 5px black, 2px 2px 10px black !important;
+        }
+        .grid-item:hover .img-txt{
+          opacity: 1 !important;
+          transition: opacity .3s, visibility .2s !important;
+          z-index: 3 !important;
+        }
+        .profile-top-box{
+          display: flex;
+          grid-gap: 20px;
+          width: 100%;
+          height: 100%;
+          justify-items: center;
+          padding-top: 60px;
+          padding-bottom: 60px;
+          align-items: flex-start;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .profile-top-box-inner{
+          margin: 10px; 
+          background-color: transparent;
+          height: 90%;
+          max-width: 90vw;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+
+        .profile-top-box-inner-text{
+          margin: 10px; 
+          background-color: #2b2a31;
+          height: 30rem;
+          width: 520px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        .heavy-drop-shadow {
+          filter: drop-shadow(-5px 10px 4px #080808);
+        }
+        .light-drop-shadow {
+          filter: drop-shadow(-1px 3px 2px #080808);
+        }
+        .featured-image{
+          width: 520px;
+          height: 520px;
+          display: block;
+          object-fit: cover;
+          overflow: hidden;
+          margin: auto;
+        }
+        .featured-image-caption{
+          background-color: #43424c;
+          z-index: 10;
+          position: absolute;
+          max-width: 100%;
+          text-align: center;
+          text-decoration: none;
+          width: auto;
+          display: inline-block;
+          filter: drop-shadow(-3px -4px 4px #080808);
+          bottom: 40px;
+        }
+        .featured-image-caption h3{
+          color: white;
+          font-size: 1.2rem;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+        }
+        .text-box-swatch{
+          background-color: #52515f;
+          z-index: 10;
+          position: revert;
+          width: 170px;
+          height: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          margin-top: 15px;
+          margin-left: -18px;
+        }
+        .text-box-swatch img{
+          z-index: 11;
+          object-fit: cover;
+          width: 115px;
+          height: 115px;
+          margin: 10px;
+          filter: drop-shadow(-3px 4px 4px #080808);
+        }
+        .text-box-badges{
+          background-color: transparent;
+          z-index: 10;
+          position: revert;
+          height: 32%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          margin-inline-start: auto;
+          max-width: 363px;
+          flex-wrap: wrap;
+          align-content: flex-start;
+          flex-direction: row;
+        }
+        .text-box-name{
+          background-color: transparent;
+          position: revert;
+          height: 100px;
+          width: 100%;
+          margin-top: 5px;
+        }
+        .text-box-name h1{
+          color: white;
+          font-size: 65px;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+        }
+        .text-box-aboutme{
+          background-color: #202020;
+          position: revert;
+          height: 215px;
+          width: 95%;
+          border-radius: 7px;
+          margin-inline: 18px;
+          
+        }
+        .text-box-aboutme p{
+          color: white;
+          font-size: 14px;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+        }
+        .text-box-socials{
+          background-color: transparent;
+          position: revert;
+          height: 60px;
+          width: 100%;
+          margin-bottom: 8px;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: flex-start;
+          align-content: flex-end;
+          margin-left: 20px;
+        }
+        .thin-white-linebreak{
+          background-color: white;
+          height: 2px;
+          width: 150px;
+          margin-left: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          margin-top: -6px;
+        }
+        .badge{
+          border-radius: 50%;
+          border: 3px solid rgb(31, 164, 197);
+          width: 45px;
+          height: 45px;
+          background-color: transparent;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 5px;
+          margin-top: 20px;
+        }
+        .badge h2{
+          position: relative;
+          color: white;
+          max-width: 100%;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+        }
+        .social-icon{
+          width: 40px;
+          height: 40px;
+          background-color: #2b2a31;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 5px;
+          margin-bottom: 5px;
+        }
+        .social-icon h2{
+          position: relative;
+          color: white;
+          font-size: smaller;
+          max-width: 100%;
+          word-wrap: none;
+          font-weight: 300;
+          font-family: 'Roboto', sans-serif;
+          margin: 5px;
+          padding: 5px;
+        }
+        #badgeDiv{
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-start;
+          align-content: flex-end;
+          max-width: 363px;
+        }
+        </style>
+  </body>
+</html>
