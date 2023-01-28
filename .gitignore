@@ -5,3 +5,15 @@ AdminLock.php
 ChangePassword.php
 ProfileEditor.php
 Account.php
+
+#ignore all image types
+*.jpg
+*.png
+*.gif
+*.bmp
+*.jpeg
+
+#ignore zips and mcworlds
+*.zip
+*.mcworld
+
